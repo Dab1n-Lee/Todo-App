@@ -34,8 +34,11 @@ async function FireQueue() {
             input: 'text',
             currentProgressStep: 1,
             inputValidator: (value) => {
-                if (!value) return 'Your text here'
-                else return null
+                if (!value) {
+                    console.log(value)
+                    return 'Your text here'
+                }
+                else { return null }
             }
         }).then((result) => {
             if (result.value) {

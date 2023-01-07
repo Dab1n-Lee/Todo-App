@@ -20,6 +20,10 @@ async function FireQueue() {
             currentProgressStep: 0,
             // optional class to show fade-in backdrop animation which was disabled in Queue mixin
             showClass: { backdrop: 'swal2-noanimation' },
+            inputValidator: (value) => {
+                if (!value) return 'Your text here'
+                else return null
+            }
         }).then((result) => {
             if (result.value) {
                 name = result.value;
@@ -28,7 +32,11 @@ async function FireQueue() {
         await Queue.fire({
             title: 'What is your main focus for today?',
             input: 'text',
-            currentProgressStep: 1
+            currentProgressStep: 1,
+            inputValidator: (value) => {
+                if (!value) return 'Your text here'
+                else return null
+            }
         }).then((result) => {
             if (result.value) {
                 focus = result.value;
@@ -79,6 +87,7 @@ function deleteTodo(event) {
                     break
                 }
             }
+            index--;
             swalWithBootstrapButtons.fire(
                 'Deleted!',
                 'Your plan has been deleted.',
